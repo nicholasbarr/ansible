@@ -11,10 +11,11 @@
       device: /dev/sda
       number: 1
       state: present
+      flags: ['esp']
       part_start: 1MiB
       part_end: 513MiB
       
   - filesystem:
-      fstype: fat32
+      fstype: vfat
       dev: /dev/sda1
       
