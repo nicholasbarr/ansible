@@ -1,8 +1,11 @@
 - hosts: localhost
   become: true
   tasks: 
-  - name: Install parted
-    pacman: parted
+  - name: Install packages
+    pacman: name={{item}}
+    with_items:
+      - parted
+        
   - name: Setup partitions
     parted:
       device: /dev/sda
