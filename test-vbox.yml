@@ -1,5 +1,17 @@
 - hosts: localhost
   become: true
   tasks: 
-  - name: Install htop
-    pacman: name=htop
+  - name: Install parted
+    pacman: parted
+  - name: Setup partitions
+    parted:
+      device: /dev/sda
+      number: 1
+      state: present
+      part_start: 1MiB
+      part_end: 513MiB
+      
+  - filesystem:
+      fstype: fat32
+      dev: /dev/sda1
+      
